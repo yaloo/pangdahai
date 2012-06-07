@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pangdahai.dao.DriverMapper" >
+  <resultMap id="BaseResultMap" type="com.pangdahai.domain.Driver" >
+    <id column="driver_id" property="driverId" jdbcType="INTEGER" />
+    <result column="driver_name" property="driverName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
+    <result column="driving_card" property="drivingCard" jdbcType="VARCHAR" />
+    <result column="trans_capacity" property="transCapacity" jdbcType="VARCHAR" />
+    <result column="exam" property="exam" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    driver_id, driver_name, mobile, identity_card, driving_card, trans_capacity, exam, 
+    sex, create_user, status, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from driver
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from driver
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pangdahai.domain.Driver" >
+    insert into driver (driver_id, driver_name, mobile, 
+      identity_card, driving_card, trans_capacity, 
+      exam, sex, create_user, 
+      status, gmt_create, gmt_modified
+      )
+    values (#{driverId,jdbcType=INTEGER}, #{driverName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{identityCard,jdbcType=VARCHAR}, #{drivingCard,jdbcType=VARCHAR}, #{transCapacity,jdbcType=VARCHAR}, 
+      #{exam,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{createUser,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pangdahai.domain.Driver" >
+    insert into driver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="driverName != null" >
+        driver_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="identityCard != null" >
+        identity_card,
+      </if>
+      <if test="drivingCard != null" >
+        driving_card,
+      </if>
+      <if test="transCapacity != null" >
+        trans_capacity,
+      </if>
+      <if test="exam != null" >
+        exam,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="driverName != null" >
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingCard != null" >
+        #{drivingCard,jdbcType=VARCHAR},
+      </if>
+      <if test="transCapacity != null" >
+        #{transCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="exam != null" >
+        #{exam,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pangdahai.domain.Driver" >
+    update driver
+    <set >
+      <if test="driverName != null" >
+        driver_name = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        identity_card = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingCard != null" >
+        driving_card = #{drivingCard,jdbcType=VARCHAR},
+      </if>
+      <if test="transCapacity != null" >
+        trans_capacity = #{transCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="exam != null" >
+        exam = #{exam,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pangdahai.domain.Driver" >
+    update driver
+    set driver_name = #{driverName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      identity_card = #{identityCard,jdbcType=VARCHAR},
+      driving_card = #{drivingCard,jdbcType=VARCHAR},
+      trans_capacity = #{transCapacity,jdbcType=VARCHAR},
+      exam = #{exam,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry location="E:\Mybatis\mysql-connector-java-5.1.18.jar"/>
+    <context id="cargo" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/pangdahai"
+                    userId="root" password="root"/>
+    <javaModelGenerator targetPackage="com.pangdahai.domain" targetProject="D:\Idea11 Projects\pangdahai\src\main\java">
+        <property name="enableSubPackages" value="true" />
+        <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+    <sqlMapGenerator targetPackage="com.pangdahai.dao" targetProject="D:\Idea11 Projects\pangdahai\src\main\java\resources">
+        <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+    <javaClientGenerator targetPackage="com.pangdahai.dao" targetProject="D:\Idea11 Projects\pangdahai\src\main\java" type="XMLMAPPER">
+        <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+    <table schema="pangdahai" tableName="driver" domainObjectName="Driver" enableSelectByExample="false" enableDeleteByExample="false"
+           enableCountByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
+    </table>
+</context>
+</generatorConfiguration>
