@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form id="driverAddForm" action="save" method="post">
+<table>
+    <tbody>
+    <tr>
+        <th><span class="required">*</span>司机姓名：</th>
+        <td>
+            <@s.formInput "driver.driverName" "class='formText' maxlength='20'" />
+            <@s.showErrors separator="" classOrStyle=""/>
+        </td>
+
+        <td>
+            <div id="driverNameTip" class="tip"></div>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="required">*</span>手机号码：</th>
+        <td>
+            <@s.formInput "driver.mobile" "class='formText' maxlength='20'" />
+            <@s.showErrors separator="" classOrStyle=""/>
+        </td>
+        <td>
+            <div id="mobileTip" class="tip"></div>
+        </td>
+    </tr>
+
+    <tr>
+        <th><span class="required">*</span>性别：</th>
+        <td>
+            <!--<@s.formRadioButtons "driver.sex" sex " " />-->
+        </td>
+    </tr>
+
+    <tr>
+        <th>身份证号码：</th>
+        <td>
+            <@s.formInput "driver.identityCard" "class='formText' maxlength='20'" />
+            <@s.showErrors separator="" classOrStyle=""/>
+        </td>
+        <td>
+            <div id="identityCardTip" class="tip"></div>
+        </td>
+    </tr>
+
+    <tr>
+        <th>驾驶证号码：</th>
+        <td>
+            <@s.formInput "driver.drivingCard" "class='formText' maxlength='20'" />
+        </td>
+        <td>
+            <div id="drivingCardTip" class="tip"></div>
+        </td>
+    </tr>
+
+    <tr>
+        <th>货运资格证：</th>
+        <td title="填写了货运资格证更好哦~亲！">
+            <@s.formInput "driver.transCapacity" "class='formText' maxlength='20'" />
+            <@s.showErrors separator="" classOrStyle=""/>
+        </td>
+        <td>
+            <div id="transCapacityTip" class="tip"></div>
+        </td>
+    </tr>
+
+    <tr>
+        <th>&nbsp;</th>
+        <td>
+            <input type="submit" id="submitButton" class="greenButton" value="提交">
+        </td>
+    </tr>
+    </tbody>
+</table>
+</form>
+</body>
+</html>
