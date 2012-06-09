@@ -17,7 +17,6 @@
     <!-- Configures the @Controller programming model -->
     <mvc:annotation-driven />
 
-
     <!--<bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -47,8 +46,6 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- enable component scanning (beware that this does not enable mapper scanning!) -->
-    <context:component-scan base-package="com.mybatis.service"/>
     <!-- enable autowire -->
     <context:annotation-config/>
 
