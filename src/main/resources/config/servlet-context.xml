@@ -43,6 +43,7 @@
                 <prop key="time_format">HH:mm:ss</prop>
                 <prop key="number_format">0.######</prop>
                 <prop key="whitespace_stripping">true</prop>
+                <prop key="auto_include">/ftl/pangdahai/head.ftl</prop>
                 <prop key="auto_import">
                     /ftl/spring.ftl as s
                 </prop>
