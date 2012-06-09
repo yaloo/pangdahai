@@ -1,11 +1,9 @@
 package com.pangdahai;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.dbunit.database.AmbiguousTableNameException;
-import org.dbunit.dataset.DataSetException;
-import org.dbunit.dataset.DefaultDataSet;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.*;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.unitils.core.UnitilsException;
 import org.unitils.dbunit.util.MultiSchemaDataSet;
@@ -55,11 +53,21 @@ public class MultiSchemaXlsDataSetReader {
         for (File file : dataSetFiles) {
             try {
                 IDataSet dataSet = new XlsDataSet(new FileInputStream(file));
-
+                String[] tableNames = dataSet.getTableNames();
+                for(String tableName:tableNames) {
+                    System.out.println(tableName);
+                    ITable iTable = dataSet.getTable(tableName);
+                    ITableMetaData iTableMetaData = iTable.getTableMetaData();
+                    Column[] columns = iTableMetaData.getColumns();
+                    String fileName = file.getName();
+                    List<ITable> iTables = Lists.newArrayList();
+                    iTables.add(iTable);
+                    tableMap.put(tableName,iTables);
+                }
             } catch (IOException e) {
             } catch (DataSetException e) {
             }
         }
-        return null;
+        return tableMap;
     }
 }
