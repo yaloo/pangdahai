@@ -13,7 +13,7 @@ import java.util.Date;
 
 @RunWith(UnitilsJUnit4TestClassRunner.class)
 @SpringApplicationContext("/spring-persistence.xml")
-@DataSet
+@DataSet(value = "PangdahaiDaoTest.xls")
 public class DriverMapperTest {
 
 	@SpringBeanByType
