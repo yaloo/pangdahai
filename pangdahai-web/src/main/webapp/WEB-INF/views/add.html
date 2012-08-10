@@ -8,7 +8,7 @@
 <form id="driverAddForm" action="save" method="post">
 <table>
     <tbody>
-    <tr>
+    <!--<tr>
         <th><span class="required">*</span>司机姓名：</th>
         <td>
             <@s.formInput "driver.driverName" "class='formText' maxlength='20'" />
@@ -18,7 +18,20 @@
         <td>
             <div id="driverNameTip" class="tip"></div>
         </td>
+    </tr>-->
+
+    <tr>
+        <th><span class="required">*</span>司机姓名：</th>
+        <td>
+            <@s.formInput "driver.driverName" "class='formText' maxlength='20'" />
+            <@s.showErrors separator="" classOrStyle=""/>
+        </td>                                         `
+
+        <td>
+            <div id="driverNameTip" class="tip"></div>
+        </td>
     </tr>
+
     <tr>
         <th><span class="required">*</span>手机号码：</th>
         <td>
