@@ -4,15 +4,73 @@
 <head>
     <title></title>
 </head>
+<script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+<!--<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="000000"
+        data-redirecturi="/driver/add" charset="utf-8"></script>-->
 <body>
-     12123
+<!--<span id="qq_login_btn"></span>
+<script type="text/javascript">
+    QC.Login({
+        btnId:"qq_login_btn"	//插入按钮的节点id
+    });
+</script>-->
+<form class="well form-inline">
+    <input type="text" class="input-small" placeholder="Email">
+    <input type="password" class="input-small" placeholder="Password">
+    <label class="checkbox">
+        <input type="checkbox"> Remember me
+    </label>
+    <button type="submit" class="btn">Sign in</button>
+</form>
+<form class="well form-search">
+    <input type="text" class="input-medium search-query">
+    <button type="submit" class="btn">Search</button>
+</form>
+<form class="well">
+    <label>Label name</label>
+    <input type="text" class="span6" placeholder="Type something…">
+    <span class="help-block">Example block-level help text here.</span>
+    <label class="checkbox">
+        <input type="checkbox"> Check me out
+    </label>
+    <button type="submit" class="btn">Submit</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>welcome</th>
+        <th>welcome</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><span class="span2">welcome</span></td>
+        <td>welcome</td>
+    </tr>
+    </tbody>
+</table>
+
+
 </body>
 
 </html>
 
 <script type="text/javascript">
     var myJ = $.noConflict();
-    myJ(function(){
+    myJ(function () {
         console.log('fuck');
+        var sock = new SockJS('http://localhost:8080/pangdahai');
+        sock.onopen = function() {
+            console.log('open');
+        };
+        sock.onmessage = function(e) {
+            console.log('message', e.data);
+        };
+        sock.onclose = function() {
+            console.log('close');
+        };
     });
+//    var webSocket = new WebSocket('ws://localhost:8080/pangdahai');
+//    webSocket.send('fuck');
+
 </script>

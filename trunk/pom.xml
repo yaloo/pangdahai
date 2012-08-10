@@ -146,12 +146,12 @@
             <artifactId>dbunit</artifactId>
             <version>2.4.8</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.unitils</groupId>
             <artifactId>unitils-spring</artifactId>
             <version>3.3</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
@@ -256,11 +256,11 @@
             <artifactId>quartz</artifactId>
             <version>1.5.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.yeepay</groupId>
-            <artifactId>yeepay</artifactId>
-            <version>1.0</version>
-        </dependency>
+       <!-- <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+            <version>5.5.1</version>
+        </dependency>-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -281,6 +281,20 @@
             <artifactId>joda-time</artifactId>
             <version>2.1</version>
         </dependency>
+
+       <!--selenium开始-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.25.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>2.25.0</version>
+        </dependency>
+       <!--selenium技术-->
+
     </dependencies>
     </dependencyManagement>
     <build>
