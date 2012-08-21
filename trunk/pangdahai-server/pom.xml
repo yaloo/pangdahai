@@ -209,9 +209,11 @@
             <artifactId>selenium-server</artifactId>
         </dependency>
         <!--selenium结束-->
+
         <dependency>
             <groupId>org.apache.mina</groupId>
-            <artifactId>mina-parent</artifactId>
+            <artifactId>mina-core</artifactId>
         </dependency>
+
     </dependencies>
 </project>
