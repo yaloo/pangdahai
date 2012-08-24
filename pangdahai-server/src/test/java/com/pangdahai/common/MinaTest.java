@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
  */
 public class MinaTest {
 
-    private static final int PORT = 8088;
+    private static final int PORT = 8089;
 
     /**
      * 启动后在cmd中运行telnet 1270.0.0.1 8088

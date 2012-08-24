@@ -21,6 +21,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
         if ("quit".equals(msg)) {
             session.close();
         }
+        int hashCode = Thread.currentThread().hashCode();
         Date date = new Date();
         session.write(date.toString());
         System.out.println(msg);
@@ -30,5 +31,8 @@ public class MinaServerHandler extends IoHandlerAdapter {
         System.out.println("服务端与客户端创建连接...");
     }
 
-
+    @Override
+    public void sessionOpened(IoSession session) throws Exception {
+        System.out.println("session opened");
+    }
 }
