@@ -23,6 +23,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
         }
         Date date = new Date();
         session.write(date.toString());
+        System.out.println(msg);
     }
 
     public void sessionCreated(IoSession session) throws Exception {

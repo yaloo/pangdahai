@@ -7,7 +7,6 @@ import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.executor.ExecutorFilter;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
-import org.junit.Test;
 
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
@@ -19,10 +18,13 @@ import java.util.concurrent.Executors;
  */
 public class MinaTest {
 
-    private static int PORT = 9999;
+    private static final int PORT = 8088;
 
-    @Test
-    public void test1() throws Exception {
+    /**
+     * 启动后在cmd中运行telnet 1270.0.0.1 8088
+     * @param args
+     */
+    public static void main(String args[]) {
         try {
             // 创建一个非阻塞的server端的Socket
             IoAcceptor acceptor = new NioSocketAcceptor();
@@ -45,6 +47,4 @@ public class MinaTest {
             e.printStackTrace();
         }
     }
-
-
 }
