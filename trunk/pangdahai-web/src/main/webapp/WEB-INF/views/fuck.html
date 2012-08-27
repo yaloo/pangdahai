@@ -1,5 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
     <title></title>
@@ -26,7 +27,8 @@
     <input type="text" class="input-medium search-query">
     <button type="submit" class="btn">Search</button>
 </form>
-<form class="well">
+<!--<form class="well">-->
+<form action="http://localhost:8089" method="GET">
     <label>Label name</label>
     <input type="text" class="span6" placeholder="Type something…">
     <span class="help-block">Example block-level help text here.</span>
@@ -34,7 +36,9 @@
         <input type="checkbox"> Check me out
     </label>
     <button type="submit" class="btn">Submit</button>
+    <!--<input type="button" id="minaTest" value="minaTest"/>-->
 </form>
+
 <table>
     <thead>
     <tr>
@@ -56,21 +60,33 @@
 </html>
 
 <script type="text/javascript">
-    var myJ = $.noConflict();
-    myJ(function () {
-        console.log('fuck');
-        var sock = new SockJS('http://localhost:8080/pangdahai');
-        sock.onopen = function() {
-            console.log('open');
-        };
-        sock.onmessage = function(e) {
-            console.log('message', e.data);
-        };
-        sock.onclose = function() {
-            console.log('close');
-        };
-    });
-//    var webSocket = new WebSocket('ws://localhost:8080/pangdahai');
-//    webSocket.send('fuck');
+//    var myJ = $.noConflict();
+//    myJ(function () {
+
+//        console.log('fuck');
+//        var sock = new SockJS('http://localhost:8080/pangdahai');
+//        sock.onopen = function () {
+//            console.log('open');
+//        };
+//        sock.onmessage = function (e) {
+//            console.log('message', e.data);
+//        };
+//        sock.onclose = function () {
+//            console.log('close');
+//        };
+//        myJ('#minaTest').click(function () {
+//            myJ.ajax({
+//                type:"GET",
+//                url:"http://localhost:8089",
+//                data:"name=John&location=Boston",
+//                success:function (msg) {
+//                    alert("Data Saved: " + msg);
+//                }
+//            });
+//        });
+//    });
+    //    var webSocket = new WebSocket('ws://localhost:8080/pangdahai');
+    //    webSocket.send('fuck');
+
 
 </script>
