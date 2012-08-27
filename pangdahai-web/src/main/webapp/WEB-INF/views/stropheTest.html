@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<script src="../../resources/common/jquery/jquery-1.7.min.js"></script>
+<script src="../../resources/pangdahai/js/xmpp/strophe.js"></script>
+<body>
+<div id='login' style='text-align: center'>
+    <form name='cred'>
+        <label for='jid'>JID:</label>
+        <input type='text' id='jid'/>
+        <label for='pass'>Password:</label>
+        <input type='password' id='pass'/>
+        <input type='button' id='connect' value='connect'/>
+    </form>
+</div>
+<hr/>
+<div id='log'></div>
+</body>
+</html>
+<script type="text/javascript">
+    var BOSH_SERVICE = 'http://g06000020:5222';
+    var connection = null;
+
+    function onConnect(status) {
+        if (status == Strophe.Status.CONNECTING) {
+            log('Strophe is connecting.');
+        } else if (status == Strophe.Status.CONNFAIL) {
+            log('Strophe failed to connect.');
+            $('#connect').get(0).value = 'connect';
+        } else if (status == Strophe.Status.DISCONNECTING) {
+            log('Strophe is disconnecting.');
+        } else if (status == Strophe.Status.DISCONNECTED) {
+            log('Strophe is disconnected.');
+            $('#connect').get(0).value = 'connect';
+        } else if (status == Strophe.Status.CONNECTED) {
+            log('Strophe is connected.');
+            log('ECHOBOT: Send a message to ' + connection.jid +
+                    ' to talk to me.');
+
+            connection.addHandler(onMessage, null, 'message', null, null, null);
+            connection.send($pres().tree());
+        }
+    }
+
+    function onMessage(msg) {
+        var to = msg.getAttribute('to');
+        var from = msg.getAttribute('from');
+        var type = msg.getAttribute('type');
+        var elems = msg.getElementsByTagName('body');
+
+        if (type == "chat" && elems.length > 0) {
+            var body = elems[0];
+
+            log('ECHOBOT: I got a message from ' + from + ': ' +
+                    Strophe.getText(body));
+
+            var reply = $msg({to:from, from:to, type:'chat'})
+                    .cnode(Strophe.copyElement(body));
+            connection.send(reply.tree());
+
+            log('ECHOBOT: I sent ' + from + ': ' + Strophe.getText(body));
+        }
+
+        // we must return true to keep the handler alive.
+        // returning false would remove it after it finishes.
+        return true;
+    }
+
+    function notifyUser(msg) {
+        if (msg.getAttribute('from') == "user_one@g06000020.com") {
+            var elems = msg.getElementsByTagName('body');
+            var body = elems[0];
+            $('#notifications').append(Strophe.getText(body));
+        }
+        return true;
+    }
+    $(document).ready(function () {
+        connection = new Strophe.Connection(BOSH_SERVICE);
+        $('#connect').bind('click', function () {
+            var button = $('#connect').get(0);
+            if (button.value == 'connect') {
+                button.value = 'disconnect';
+                connection.connect("admin@g06000020.com",
+                        "gsj020", onConnect);
+            } else {
+                button.value = 'connect';
+                connection.disconnect();
+            }
+        });
+    });
+</script>
