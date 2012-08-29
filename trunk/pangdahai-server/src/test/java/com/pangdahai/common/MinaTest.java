@@ -1,11 +1,12 @@
 package com.pangdahai.common;
 
+import com.pangdahai.xmppServer.StalledSessionsFilter;
+import com.pangdahai.xmppServer.XMPPCodecFactory;
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.executor.ExecutorFilter;
-import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
 import java.net.InetSocketAddress;
@@ -29,7 +30,10 @@ public class MinaTest {
             // 创建一个非阻塞的server端的Socket
             IoAcceptor acceptor = new NioSocketAcceptor();
             // 设置过滤器
-            acceptor.getFilterChain().addLast("logger", new LoggingFilter());
+            // Add the XMPP codec filter
+            acceptor.getFilterChain().addFirst("xmpp", new ProtocolCodecFilter(new XMPPCodecFactory()));
+//            // Kill sessions whose outgoing queues keep growing and fail to send traffic
+            acceptor.getFilterChain().addAfter("xmpp", "outCap", new StalledSessionsFilter());
             acceptor.getFilterChain().addLast("codec",
                     new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
             acceptor.getFilterChain().addLast("threadPool", new ExecutorFilter(Executors.newCachedThreadPool()));
