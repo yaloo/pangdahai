@@ -16,7 +16,8 @@ Password <input type="password" id="pass">
 <button id="connectBut">Connect</button>
 <button id="disconnectBut">Disconnect</button>
 <button id="rosterBut">Get roster</button>
-<button id="login">login</button>
+<button id="loginOpenFire">loginOpenFire</button>
+<button id="loginMyTest">loginMyTest</button>
 <button id="sendMsg">send message</button>
 <br>
 
@@ -35,8 +36,12 @@ Password <input type="password" id="pass">
                 alert("You are not connected");
             }
         });
-        $('#login').click(function(){
+        $('#loginOpenFire').click(function(){
             $.xmpp.connect({url:"http://localhost:5222", jid:"admin@g06000020.com", password:"gsj020"});
+        });
+
+        $('#loginMyTest').click(function(){
+            $.xmpp.connect({url:"http://localhost:8089", jid:"admin@g06000020.com", password:"gsj020"});
         });
 
         $('#sendMsg').click(function(){

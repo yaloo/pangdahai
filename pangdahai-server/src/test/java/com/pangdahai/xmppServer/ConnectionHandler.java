@@ -1,22 +1,33 @@
-package com.pangdahai.common;
+package com.pangdahai.xmppServer;
 
-import com.pangdahai.xmppServer.XMLLightweightParser;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
 /**
  * Author: gsj
- * DateTime: 12-8-21 下午5:52
+ * DateTime: 12-8-29 上午11:19
  */
-public class MinaServerHandler extends IoHandlerAdapter {
+public class ConnectionHandler extends IoHandlerAdapter {
 
+    private static final Logger Log = LoggerFactory.getLogger(ConnectionHandler.class);
+
+    /**
+     * The utf-8 charset for decoding and encoding Jabber packet streams.
+     */
     static final String CHARSET = "UTF-8";
     static final String XML_PARSER = "XML-PARSER";
     protected static final String HANDLER = "HANDLER";
     protected static final String CONNECTION = "CONNECTION";
 
+    protected String serverName;
+
+    protected ConnectionHandler(String serverName) {
+        this.serverName = serverName;
+    }
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
         System.out.println("服务端发送异常..." + cause.getMessage());
     }
@@ -34,22 +45,11 @@ public class MinaServerHandler extends IoHandlerAdapter {
     }
 
     public void sessionCreated(IoSession session) throws Exception {
-        // Create a new XML parser for the new connection. The parser will be used by the XMPPDecoder filter.
-        final XMLLightweightParser parser = new XMLLightweightParser(CHARSET);
-        session.setAttribute(XML_PARSER, parser);
         System.out.println("服务端与客户端创建连接...");
     }
 
     @Override
     public void sessionOpened(IoSession session) throws Exception {
-        // Create a new XML parser for the new connection. The parser will be used by the XMPPDecoder filter.
-        final XMLLightweightParser parser = new XMLLightweightParser(CHARSET);
-        session.setAttribute(XML_PARSER, parser);
         System.out.println("session opened");
-    }
-
-    @Override
-    public void messageSent(IoSession session, Object message) throws Exception {
-        System.out.println("messageSent invoked:" + message);
     }
 }
